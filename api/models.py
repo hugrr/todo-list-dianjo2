@@ -7,20 +7,21 @@ from django.db import models
 """
 Define he Contact Entity into your applcation model
 """
-class Contact(models.Model):
-    first_name = models.CharField(max_length=50, default='')
-    last_name = models.CharField(max_length=50, default='')
-    phone_number = models.CharField(max_length=15, default='')
-    email = models.CharField(max_length=150, default='')
+
+
+class Todo(models.Model):
+    label = models.CharField(max_length=200, default='')
+    done = models.BooleanField(default=False)
+
 
 """
 The ContactSerializer is where you will specify what properties
 from the ever Contact should be inscuded in the JSON response
 """
-class ContactSerializer(serializers.ModelSerializer):
 
 
+class TodoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Contact
+        model = Todo
         # what fields to include?
-        fields = ('first_name','last_name', 'phone_number', 'email')
+        fields = ('id', 'label', 'done',)
