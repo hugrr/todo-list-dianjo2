@@ -46,7 +46,6 @@ class TodoView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, todo_id):
-        todo = Todo.objects.get(id=todo_id)
-        todo.delete()
+    def delete(self, request, username):
+        Todo.objects.filter(username=username).delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
